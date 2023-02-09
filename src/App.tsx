@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { LocalizationProvider } from '@mui/x-date-pickers-pro';
+import { AdapterDateFns } from '@mui/x-date-pickers-pro/AdapterDateFns';
+import { GlobalStyles } from 'src/theme/GlobalStyles';
+import { RouterProvider } from 'react-router-dom';
+import { router } from 'src/routes/router';
+import { useAxiosInterceptors } from 'src/utils/axios';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    useAxiosInterceptors();
+
+    return (
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <GlobalStyles />
+            <RouterProvider router={router} />
+        </LocalizationProvider>
+  )
 }
 
 export default App;
