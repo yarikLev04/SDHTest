@@ -15,7 +15,10 @@ import React, { useEffect, useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { useNavigate, useParams } from 'react-router-dom'
 import { User } from 'src/@types/users/types';
-import { deleteUser, getUser } from 'src/redux/slices/users';;
+import { deleteUser, getUser } from 'src/redux/slices/users';
+import { useSelector } from '../../redux/store';
+
+;
 
 export function UserProfile() {
     const { id } = useParams();
@@ -23,6 +26,7 @@ export function UserProfile() {
     const { enqueueSnackbar } = useSnackbar();
     const [user, setUser] = useState<User | null>(null);
     const [onDeleteUserId, setOnDeleteUserId] = useState(0);
+    const { isLoading } = useSelector(state => state.users)
 
     useEffect(() => {
         setUserById();
@@ -62,12 +66,14 @@ export function UserProfile() {
             </Stack>
             <Stack px={3} py={2} direction='row' justifyContent={'center'} alignItems={'center'}>
                 <CardHeader title={`${user?.first_name} ${user?.last_name} Profile`}/>
-                <Chip
-                    size='small'
-                    sx={{ fontSize: '1rem' }}
-                    color={user?.is_active ? 'success' : 'warning'}
-                    label={user?.is_active ? 'Active' : 'Inactive'}
-                />
+                {!isLoading && (
+                    <Chip
+                        size='small'
+                        sx={{ fontSize: '1rem' }}
+                        color={user?.is_active ? 'success' : 'warning'}
+                        label={user?.is_active ? 'Active' : 'Inactive'}
+                    />
+                )}
             </Stack>
             <CardContent>
                 <Grid container justifyContent={'center'} spacing={3}>
