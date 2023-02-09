@@ -23,7 +23,7 @@ export function DeleteDialogWindow({ open, onClose, handleDelete, title, descrip
                 {description}
             </DialogContent>
             <DialogActions sx={{ marginBottom: 1 }}>
-                <Button size='small' color='success' variant='contained' onClick={handleDelete}>Delete</Button>
+                <Button size='small' color='error' variant='contained' onClick={handleDelete}>Delete</Button>
                 <Button size='small' variant='outlined' onClick={onClose}>Cancel</Button>
             </DialogActions>
         </Dialog>
