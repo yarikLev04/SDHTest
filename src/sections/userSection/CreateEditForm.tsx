@@ -39,12 +39,12 @@ export function CreateEditForm() {
     const { enqueueSnackbar } = useSnackbar();
 
     const validationSchema = Yup.object().shape({
-        first_name: Yup.string().required('First name is required'),
-        last_name: Yup.string().required('Last name is required'),
+        first_name: Yup.string().trim().required('First name is required'),
+        last_name: Yup.string().trim().required('Last name is required'),
         birth_date: Yup.date().nullable().typeError('Invalid date').required('Date of birth is required').max(endOfDay(new Date()), 'Date of birth cant be future date'),
-        gender: Yup.string().required('Gender is required'),
-        job: Yup.string().required('Job is required'),
-        biography: Yup.string().required('Biography is required')
+        gender: Yup.string().trim().required('Gender is required'),
+        job: Yup.string().trim().required('Job is required'),
+        biography: Yup.string().trim().required('Biography is required')
     });
 
     const formik = useFormik<UserForm>({

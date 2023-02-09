@@ -18,8 +18,6 @@ import { User } from 'src/@types/users/types';
 import { deleteUser, getUser } from 'src/redux/slices/users';
 import { useSelector } from '../../redux/store';
 
-;
-
 export function UserProfile() {
     const { id } = useParams();
     const navigate = useNavigate();
