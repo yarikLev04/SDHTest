@@ -1,1 +1,1 @@
-export const BASE_URL = process.env.REACT_APP_HOST_API_URL
+export const BASE_URL = 'https://frontend-candidate.dev.sdh.com.ua/v1/';
