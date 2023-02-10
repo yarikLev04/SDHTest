@@ -163,8 +163,9 @@ export function CreateEditForm() {
                                     error={Boolean(formik.touched.gender && formik.errors.gender)}
                                 >
                                     <MenuItem disabled value=''>Gender</MenuItem>
-                                    <MenuItem value={Gender.Male}>{Gender.Male}</MenuItem>
-                                    <MenuItem value={Gender.Female}>{Gender.Female}</MenuItem>
+                                    {Object.keys(Gender).map(gender => (
+                                        <MenuItem key={gender} value={gender}>{gender}</MenuItem>
+                                    ))}
                                 </Select>
                                 {Boolean(formik.touched.gender && formik.errors.gender) && (
                                     <FormHelperText sx={{ color: "#d32f2f", margin: "4px 14px 0 !important" }}>
