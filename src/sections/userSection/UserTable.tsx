@@ -11,7 +11,7 @@ import {
     TableCell,
     TableContainer,
     TableHead,
-    TableRow
+    TableRow, Tooltip, Typography
 } from '@mui/material';
 import { User } from 'src/@types/users/types';
 import { Iconify } from 'src/components/Iconify';
@@ -59,9 +59,9 @@ export const UserTable = () => {
                 <Table>
                     <TableHead sx={{ bgcolor: 'lightblue' }}>
                         <TableRow>
-                            <TableCell align='center'>Full Name</TableCell>
-                            <TableCell align='center'>Date of birth</TableCell>
-                            <TableCell align='center'>Gender</TableCell>
+                            <TableCell sx={{ fontSize: '16px', fontWeight: 700 }} align='center'>Full Name</TableCell>
+                            <TableCell sx={{ fontSize: '16px', fontWeight: 700 }} align='center'>Date of birth</TableCell>
+                            <TableCell sx={{ fontSize: '16px', fontWeight: 700 }} align='center'>Gender</TableCell>
                             <TableCell />
                         </TableRow>
                     </TableHead>
@@ -89,18 +89,22 @@ const UserRow = ({ user, handleOpenDeleteDialog }: UserRowProps) => {
             <TableCell align='center'>{user?.birth_date?.toString()}</TableCell>
             <TableCell align='center'>{user.gender}</TableCell>
             <TableCell align='right'>
-                <IconButton disabled={isLoading} size='large' onClick={(event) => {
-                    event.stopPropagation();
-                    navigate(`${user.id}`)
-                }}>
-                    <Iconify icon={'material-symbols:edit'} width='20px' height='20px' />
-                </IconButton>
-                <IconButton disabled={isLoading} size='large' onClick={(event) => {
-                    event.stopPropagation();
-                    handleOpenDeleteDialog(user.id);
-                }}>
-                    <Iconify icon={'bi:trash-fill'} width='20px' height='20px' />
-                </IconButton>
+                <Tooltip title={<Typography variant={'body2'}>Edit user</Typography>}>
+                    <IconButton disabled={isLoading} size='large' onClick={(event) => {
+                        event.stopPropagation();
+                        navigate(`${user.id}`)
+                    }}>
+                        <Iconify icon={'material-symbols:edit'} width='20px' height='20px' />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title={<Typography variant={'body2'}>Delete user</Typography>}>
+                    <IconButton disabled={isLoading} size='large' onClick={(event) => {
+                        event.stopPropagation();
+                        handleOpenDeleteDialog(user.id);
+                    }}>
+                        <Iconify icon={'bi:trash-fill'} width='20px' height='20px' />
+                    </IconButton>
+                </Tooltip>
             </TableCell>
         </TableRow>
     );

@@ -91,7 +91,7 @@ export function UserProfile() {
                         <Typography variant='h6'>Job: {user?.job}</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Tooltip title={user?.biography}>
+                        <Tooltip title={<Typography variant={'body2'}>{user?.biography}</Typography>}>
                             <Typography sx={{ wordBreak: "break-all" }} variant='h6'>
                                 Biography: {user?.biography.length as number > 150 ? user?.biography.slice(0, 150) + '...' : user?.biography }
                             </Typography>

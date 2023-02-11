@@ -136,6 +136,7 @@ export function CreateEditForm() {
                                     value={formik.values.birth_date}
                                     inputFormat='yyyy-MM-dd'
                                     mask={'____-__-__'}
+                                    views={['year', 'month', 'day']}
                                     maxDate={new Date()}
                                     disabled={formik.isSubmitting}
                                     onChange={(value: any) => formik.setFieldValue('birth_date', value)}
